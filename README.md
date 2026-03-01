@@ -19,3 +19,9 @@ Simular análise de logs, detecção de incidentes e registro de eventos crític
 ## Execução
 ```bash
 python monitor.py
+
+## Cenário Simulado
+
+Este projeto simula um ambiente onde rotinas batch são monitoradas
+continuamente e incidentes são registrados para atuação do suporte N1,
+seguindo práticas comuns em operações de TI corporativas.
