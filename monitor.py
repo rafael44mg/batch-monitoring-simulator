@@ -17,7 +17,6 @@ ERROR_KEYWORDS = ["ERROR", "ALERT"]
 # ==============================
 
 def ensure_structure():
-    """Garante que pastas e arquivos existam"""
     os.makedirs("logs", exist_ok=True)
     os.makedirs("incidents", exist_ok=True)
 
@@ -50,17 +49,23 @@ def detect_incidents(lines):
 
 
 # ==============================
-# FLUXO N1 (SIMULAÇÃO)
+# FLUXO N1
 # ==============================
 
 def acknowledge_incident(incident):
-    """Simula analista N1 assumindo incidente"""
     incident["status"] = "ACK"
 
 
+def start_progress(incident):
+    incident["status"] = "IN_PROGRESS"
+
+
 def close_incident(incident):
-    """Simula resolução do incidente"""
     incident["status"] = "CLOSED"
+
+
+def escalate_incident(incident):
+    print(f"[ESCALATION] Enviado para equipe especialista: {incident['event']}")
 
 
 # ==============================
@@ -99,13 +104,18 @@ def main():
             print(f" -> {incident['event']}")
 
             acknowledge_incident(incident)
-            print("[N1] Incidente reconhecido (ACK)")
+            print("[N1] ACK")
+
+            start_progress(incident)
+            print("[N1] IN_PROGRESS")
+
+            escalate_incident(incident)
 
             close_incident(incident)
-            print("[RESOLVED] Incidente encerrado (CLOSED)")
+            print("[RESOLVED] CLOSED")
 
         save_incidents(incidents)
-        print("[INFO] Incidentes registrados com sucesso.")
+        print("[INFO] Incidentes registrados.")
 
     else:
         print("[INFO] Sistema saudável.")
@@ -113,3 +123,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    
