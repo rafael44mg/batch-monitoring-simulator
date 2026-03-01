@@ -20,6 +20,14 @@ Simular análise de logs, detecção de incidentes e registro de eventos crític
 ```bash
 python monitor.py
 
+## Exemplo de execução
+
+Incidentes detectados:
+ERROR Job REPORT_GENERATION failed TIMEOUT
+ALERT Disk usage above threshold
+
+Incidente registrado com status OPEN.
+
 ## Cenário Simulado
 
 Este projeto simula um ambiente onde rotinas batch são monitoradas
